@@ -12,6 +12,6 @@ rule align:
         extra="--outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --sjdbGTFfile {} {}".format(
             "resources/genome.gtf", config["params"]["star"]
         ),
-    threads: 24
+    threads: 8
     wrapper:
         "v1.21.4/bio/star/align"
