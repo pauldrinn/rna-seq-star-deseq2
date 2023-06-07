@@ -30,7 +30,7 @@ fgseaRes <- fgsea(pathways = pathways.hallmark, stats = ranks)
 #  theme_minimal()
 #dev.off()
 
-pdf(snakemake@output[["plot"]])
+pdf(snakemake@output[["plot"]], width=8, height=7)
 topPathwaysUp <- fgseaRes[ES > 0][head(order(pval), n=10), pathway]
 topPathwaysDown <- fgseaRes[ES < 0][head(order(pval), n=10), pathway]
 topPathways <- c(topPathwaysUp, rev(topPathwaysDown))
