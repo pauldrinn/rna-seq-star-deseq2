@@ -86,7 +86,7 @@ rule gsea:
     input:
         table="results/diffexp/{contrast}.diffexp.noshrink.symbol.tsv"
     output:
-        plot="results/diffexp/{contrast}.gsea.svg"
+        plot="results/diffexp/{contrast}.gsea.pdf"
     params:
         contrast=get_contrast,
         species=get_msigdb_species_name(),
