@@ -16,6 +16,8 @@ dds <- readRDS(snakemake@input[[1]])
 
 contrast <- c("condition", snakemake@params[["contrast"]])
 res <- results(dds, contrast=contrast, parallel=parallel)
+
+write.table(data.frame("gene"=rownames(res),res), file=snakemake@output[["noshrink"]], row.names=FALSE, sep='\t')
 # shrink fold changes for lowly expressed genes
 # use ashr so we can use `contrast` as conversion to coef is not trivial
 # see https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#extended-section-on-shrinkage-estimators
