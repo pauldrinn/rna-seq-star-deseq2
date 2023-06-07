@@ -70,7 +70,7 @@ rule deseq2:
         "results/deseq2/all.rds",
     output:
         table=report("results/diffexp/{contrast}.diffexp.tsv", "../report/diffexp.rst"),
-        noshrink=report("results/diffexp/{contrast}.diffexp.noshrink.tsv", "../report/diffexp.rst"),
+        noshrink="results/diffexp/{contrast}.diffexp.noshrink.tsv",
         ma_plot=report("results/diffexp/{contrast}.ma-plot.svg", "../report/ma.rst"),
     params:
         contrast=get_contrast,
@@ -81,3 +81,18 @@ rule deseq2:
     threads: get_deseq2_threads()
     script:
         "../scripts/deseq2.R"
+
+rule gsea:
+    input:
+        table="results/diffexp/{contrast}.diffexp.noshrink.tsv"
+    output:
+        plot="results/diffexp/{contrast}.gsea.svg"
+    params:
+        contrast=get_contrast,
+        species=get_msigdb_species_name,
+    conda:
+        "../envs/gsea.yaml"
+    log:
+        "logs/gsea/{contrast}.gsea.log",
+    script:
+        "../scripts/gsea.R"

@@ -18,7 +18,7 @@ samples = (
 def get_final_output():
     final_output = expand(
         ["results/diffexp/{contrast}.diffexp.symbol.tsv",
-        "results/diffexp/{contrast}.diffexp.noshrink.symbol.tsv"],
+        "results/diffexp/{contrast}.gsea.svg"],
         contrast=config["diffexp"]["contrasts"],
     )
     final_output.append("results/deseq2/normcounts.symbol.tsv")
@@ -152,6 +152,11 @@ def get_bioc_species_name():
     subspecies = config["ref"]["species"].split("_")[1]
     return first_letter + subspecies
 
+def get_msigdb_species_name():
+    first_letter = config["ref"]["species"][0]
+    genus = config["ref"]["species"].split("_")[0]
+    subspecies = config["ref"]["species"].split("_")[1]
+    return first_letter.upper() + genus[1:] + " " + subspecies
 
 def get_fastqs(wc):
     if config["trimming"]["activate"]:
