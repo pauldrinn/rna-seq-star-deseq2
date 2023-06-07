@@ -84,7 +84,7 @@ rule deseq2:
 
 rule gsea:
     input:
-        table="results/diffexp/{contrast}.diffexp.noshrink.tsv"
+        table="results/diffexp/{contrast}.diffexp.noshrink.symbol.tsv"
     output:
         plot="results/diffexp/{contrast}.gsea.svg"
     params:

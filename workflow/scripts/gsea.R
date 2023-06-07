@@ -20,9 +20,6 @@ res2 <- res %>%
 
 ranks <- deframe(res2)
 fgseaRes <- fgsea(pathways = pathways.hallmark, stats = ranks)
-fgseaResTidy <- fgseaRes %>%
-  as_tibble %>%
-  arrange(desc(NES))
 
 #svg('gsea_plot.svg')
 #ggplot(fgseaResTidy, aes(reorder(pathway, NES), NES)) +
