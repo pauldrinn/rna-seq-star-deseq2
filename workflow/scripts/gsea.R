@@ -36,5 +36,3 @@ topPathwaysDown <- fgseaRes[ES < 0][head(order(pval), n=10), pathway]
 topPathways <- c(topPathwaysUp, rev(topPathwaysDown))
 plotGseaTable(pathways.hallmark[topPathways], ranks, fgseaRes, gseaParam=0.5)
 dev.off()
-
-save.image()
