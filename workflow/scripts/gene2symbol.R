@@ -1,6 +1,8 @@
 library(biomaRt)
 library(tidyverse)
 
+Sys.setenv(BIOMART_CACHE = tempdir())
+
 # this variable holds a mirror name until
 # useEnsembl succeeds ("www" is last, because 
 # of very frequent "Internal Server Error"s)
@@ -58,5 +60,4 @@ annotated <- merge(df, g2g, by.x="gene", by.y="ensembl_gene_id")
 annotated$gene <- ifelse(annotated$external_gene_name == '', annotated$gene, annotated$external_gene_name)
 annotated$external_gene_name <- NULL
 write.table(annotated, snakemake@output[["symbol"]], sep='\t', row.names=F)
-
-
+biomartCacheClear()
