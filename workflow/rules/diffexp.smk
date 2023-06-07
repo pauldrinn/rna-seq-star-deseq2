@@ -89,7 +89,7 @@ rule gsea:
         plot="results/diffexp/{contrast}.gsea.svg"
     params:
         contrast=get_contrast,
-        species=get_msigdb_species_name,
+        species=get_msigdb_species_name(),
     conda:
         "../envs/gsea.yaml"
     log:
